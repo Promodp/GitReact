@@ -18,9 +18,11 @@ export function login( credentials ) {
     .then( response => {
         
         if( response.data ) {
+
             
             localStorage.setItem( 'authToken', response.data.data.token );
           
+
             isLoggedIn = true;
             return response.data;
         } else {
@@ -30,6 +32,9 @@ export function login( credentials ) {
 }
 
 export function logout() {
+
+   // localStorage.removeItem( 'isLogged' );
+
     localStorage.removeItem( 'authToken' );
     isLoggedIn = false;
 }
