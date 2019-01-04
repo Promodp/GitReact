@@ -1,9 +1,12 @@
 import * as Constants from './constants';
 import * as GitService from '../services/git';
 
-function getUsers( ) {
+function getUsers( page ) {
     return {
-        type: Constants.USERS
+        type: Constants.USERS,
+        payload:{
+            page:page
+        }
     }
 }
 
@@ -25,11 +28,11 @@ function getUsersFailure( error ) {
     };
 }
 
-function getUsersThunk() {
+function getUsersThunk(page) {
     return function( dispatch ) {
-        dispatch( getUsers() );
+        dispatch( getUsers(page) );
 
-        GitService.getUsers()
+        GitService.getUsers(page)
             .then( users => dispatch( getUsersSuccess( users ) ) )
             .catch( error => dispatch( getUsersFailure( error ) ) );
     }

@@ -2,11 +2,9 @@ import axios from 'axios';
 
 const baseUrl = `http://apiproxy.nl-demo.com/login/api`;
 const loginUrl = `${baseUrl}/login`;
-
 const axiosOptions = {
     timeout: 10000
 };
-
 export let isLoggedIn = localStorage.getItem( 'authToken' );
 export function login( credentials ) {
     return axios.post( loginUrl, credentials, {
@@ -18,11 +16,7 @@ export function login( credentials ) {
     .then( response => {
         
         if( response.data ) {
-
-            
             localStorage.setItem( 'authToken', response.data.data.token );
-          
-
             isLoggedIn = true;
             return response.data;
         } else {
@@ -30,15 +24,11 @@ export function login( credentials ) {
         }
     })
 }
-
 export function logout() {
-
    // localStorage.removeItem( 'isLogged' );
-
     localStorage.removeItem( 'authToken' );
     isLoggedIn = false;
 }
-
 export function getAuthToken() {
     return localStorage.getItem( 'authToken' );
 }
