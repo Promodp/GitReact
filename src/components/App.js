@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-
-
 import Home from '../containers/Home'
 import UserDeatils from '../containers/UserDetails'
 import LoginForm from '../containers/LoginForm'

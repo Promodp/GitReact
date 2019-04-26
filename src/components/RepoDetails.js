@@ -16,7 +16,6 @@ class RepoDetails extends Component {
                                                         <small> mirror of <Link to="#">https://github.com</Link> </small>
                                                 </li>
                                         </ul>
-
                                         <ul className="nav nav-tabs" style={{marginLeft: '311px'}}>
                                                 <li className="nav-item " style={{fontSize: '9px'}}>
                                                         <Link className="nav-link" to="#"><i className="far fa-registered"></i>Watch</Link>
@@ -28,7 +27,6 @@ class RepoDetails extends Component {
                                                         <Link className="nav-link" to="#"><i className="far fa-fork"></i>Fork</Link>
                                                 </li>
                                         </ul>
-
                                 </div>
                                 <ul className="nav nav-tabs card-header-tabs">
                                         <li className="nav-item">
@@ -42,7 +40,6 @@ class RepoDetails extends Component {
                                         </li>
                                 </ul>
                         </div>
-
                 </div>
                 <small style={{marginLeft: '204px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
                         jkjskkjfhhsk sfhs hhhdhhd hh.</small>
@@ -63,10 +60,8 @@ class RepoDetails extends Component {
 
                         </ul>
                 </div>
-                
                 <div className="card" style={{maxWidth: '173px',
                         marginLeft: '199px' ,     marginTop: '12px'}}>
-
                         <ul className="nav">
                                 <li className="nav-item" style={{paddingLeft: '58px'}}>
                                         Branch Master

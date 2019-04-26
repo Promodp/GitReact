@@ -5,5 +5,6 @@ import { withRouter } from 'react-router-dom';
 import Home from '../components/Home';
 
 const mapStateToProps = state => state;
+console.log('data is here');
 
 export default withRouter( connect( mapStateToProps )( Home ) );

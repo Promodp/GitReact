@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserDetails from '../containers/UserDetails';
 import { Link } from 'react-router-dom';
-import { getUsersThunk } from '../actions/creators';
+import { getUsersThunk,getUsersSearch  } from '../actions/creators';
 import { USERS, USERS_SUCCESS, USERS_FAILURE } from '../actions/constants';
 
 
@@ -17,10 +17,34 @@ const searchStyle={
 
 // }
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: ''
+        }
+        this.handleChange=this.handleChange.bind(this)
+        this.handleSubmit=this.handleSubmit.bind(this)
+    }
+
+       
+    handleChange(event) {
+    
+        
+            this.setState({value: event.target.value});
+         
+            
+         }
+         handleSubmit(event){
+             console.log('data',this.state.value);
+             event.preventDefault()
+            this.props.dispatch(getUsersSearch(this.state.value))
+         }
+
     render() {
-        console.log("render");
         let el;
         //let { starred_url} = this.props.usersList.users || {};
+        console.log('prps',this.props.userList);
+        
         switch (this.props.usersList.isLoading) {
             case USERS:
                 el = (
@@ -43,12 +67,13 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="col-6">
-                                <div>
-                                    <form action="">
+                                <div onSubmit={this.handleSubmit}>
+                                    <form  >
                                         <div className="card-body row align-items-center">
                                             <div className="col" style={{ paddingRight: '0px' }}>
                                                 <input className=" form-control-borderless" style={searchStyle} type="search"
                                                     // value={this.state.query}
+                                                    value={this.state.value} onChange={this.handleChange}
                                                     placeholder="Search.." />
                                             </div>
                                             <div>
@@ -65,7 +90,7 @@ class Home extends Component {
                                             <li className="col-12 d-flex  py-4 border-bottom public source">
                                                 <div className="col-12 d-inline-block">
                                                     {
-                                                        this.props.usersList.users.map(user => {
+                                                    this.props.usersList &&   this.props.usersList.users.map(user => {
                                                             return (
                                                                 <div style={{ fontSize: '18px' }}>
                                                                     <div><Link style={{ display: "block", }} to={`/home/${user.login}`} component={UserDetails} itemprop="name codeRepository"><i className="fa fa-book" ></i>
@@ -87,7 +112,6 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
-                      
                         <nav>
                             <ul className="pagination " style={paginationStyle}>
                                 <li ><Link className="page-link" to="#" onClick={this.changePage}>Previous</Link></li>
@@ -132,7 +156,9 @@ class Home extends Component {
         return (<div className="container">{el}</div>)
     }
     componentDidMount() {
-        this.props.dispatch(getUsersThunk('1'))
+        console.log('this state',this.state.value);
+        
+        this.props.dispatch(getUsersThunk())
     }
 }
 export default Home;

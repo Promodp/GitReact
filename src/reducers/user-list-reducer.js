@@ -1,7 +1,11 @@
 import { USERS, USERS_SUCCESS,  USERS_FAILURE } from '../actions/constants';
 
 export const userslistReducer = ( curState = 
+
+    
     {   page:'',users: [], isLoading: false, error: null }, action ) => {
+        console.log('promod reducer',action.payload);
+        
     let newState;
     switch( action.type ) {
         case USERS:

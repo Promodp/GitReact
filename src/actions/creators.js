@@ -28,16 +28,24 @@ function getUsersFailure( error ) {
     };
 }
 
-function getUsersThunk(page) {
+function getUsersThunk(value) {
     return function( dispatch ) {
-        dispatch( getUsers(page) );
+        dispatch( getUsers(value) );
 
-        GitService.getUsers(page)
+        GitService.getUsers(value)
             .then( users => dispatch( getUsersSuccess( users ) ) )
             .catch( error => dispatch( getUsersFailure( error ) ) );
     }
 }
+function getUsersSearch(value){
+    return function (dispatch){
+        dispatch (getUsers(value));
+        GitService.getUsersSearch(value)
+        .then( users => dispatch( getUsersSuccess( users ) ) )
+        .catch( error => dispatch( getUsersFailure( error ) ) );
 
+    }
+}
 
 function getUsersDetails(  id  ) {
     return {
@@ -49,6 +57,7 @@ function getUsersDetails(  id  ) {
 }
 
 function getUsersDetailsSuccess( users ) {
+    console.log('user',users)
     return {
         type: Constants.USERS_DETAILS_SUCCESS,
         payload: {
@@ -87,6 +96,7 @@ export {
     getUsersDetails,
     getUsersDetailsSuccess,
     getUsersDetailsFailure,
-    getUsersDetailsThunk
+    getUsersDetailsThunk,
+    getUsersSearch
 
 };

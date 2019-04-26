@@ -4,9 +4,9 @@ import { userslistReducer } from './reducers/user-list-reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-
 // create store
 export const store = createStore(
+    
     combineReducers({
         usersDetail: usersDetailReducer,
         usersList: userslistReducer,
@@ -15,5 +15,5 @@ export const store = createStore(
         usersDetail: { usersId: null, users: {}, isLoading: false, error: null },
         usersList: {page:'', users: [], isLoading: false, error: null },
     },
-    composeWithDevTools(applyMiddleware(logger, thunk))
+    composeWithDevTools(applyMiddleware(logger, thunk)) //work performed between action and reducer*
 );
